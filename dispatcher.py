@@ -2,9 +2,15 @@
 class Dispatcher:
     cmds = {}
 
-    def reg(self):
-        pass
+    def reg(self, cmd, fn):
+        self.cmds[cmd] = fn
 
     def run(self):
-        pass
+        while True:
+            cmd = input('>>>').strip()
+            if cmd == 'quit':
+                break
+            self.cmds.get(cmd, self.defaultfunc)()
 
+    def defaultfunc(self):
+        print("Unknown command")
